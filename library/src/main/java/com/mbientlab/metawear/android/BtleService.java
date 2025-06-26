@@ -473,7 +473,7 @@ public class BtleService extends Service {
             }
 
             return connectTask.execute("Failed to connect and discover services within %dms", 10000,
-                    () -> androidBtGatt = btDevice.connectGatt(BtleService.this, false, btleGattCallback)
+                    () -> androidBtGatt = btDevice.connectGatt(BtleService.this, false, btleGattCallback, BluetoothDevice.TRANSPORT_LE)
             ).continueWithTask(task -> {
                 if (task.isFaulted()) {
                     closeGatt();
