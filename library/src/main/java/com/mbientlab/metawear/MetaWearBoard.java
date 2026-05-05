@@ -88,6 +88,8 @@ public interface MetaWearBoard {
      */
     Task<DeviceInformation> readDeviceInformationAsync();
 
+    int getBtDeviceType();
+
     /**
      * Retrieves the files needed to update the board to the specific firmware version.
      * A connection must be first established before calling this function.
@@ -246,6 +248,8 @@ public interface MetaWearBoard {
      * Removes all routes and resources allocated on the board (observers, data processors, timers, and loggers)
      */
     void tearDown();
+
+    void removeAllEvents();
 
     /**
      * Serialize object state and write the state to the local disk

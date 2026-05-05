@@ -124,6 +124,9 @@ public interface BtleGatt {
      * @return Task holding the result of the connect attempt
      */
     Task<Void> connectAsync();
+
+    int getBtDeviceType();
+
     /**
      * Read the remote device's RSSI value
      * @return Task holding the RSSI value, if successful

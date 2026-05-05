@@ -551,6 +551,11 @@ public class JseMetaWearBoard implements MetaWearBoard {
         });
     }
 
+    @Override
+    public int getBtDeviceType() {
+        return gatt.getBtDeviceType();
+    }
+
     private String generateFileName(String build, Version version, String filename) {
         return String.format(Locale.US, "%s_%s_%s_%s_%s",
                 persist.boardInfo.hardwareRevision,
@@ -1086,6 +1091,15 @@ public class JseMetaWearBoard implements MetaWearBoard {
         persist.routeIdCounter= 0;
         persist.activeRoutes.clear();
         persist.activeEventManagers.clear();
+    }
+
+    @Override
+    public void removeAllEvents() {
+        event = (EventImpl) persist.modules.get(EventImpl.class);
+
+        if (event != null) {
+            event.tearDown();
+        }
     }
 
     @Override

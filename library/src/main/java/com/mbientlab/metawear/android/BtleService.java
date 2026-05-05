@@ -483,6 +483,11 @@ public class BtleService extends Service {
         }
 
         @Override
+        public int getBtDeviceType() {
+            return btDevice.getType();
+        }
+
+        @Override
         public Task<Integer> readRssiAsync() {
             return androidBtGatt != null ?
                     addGattOperation(this, "onReadRemoteRssi not called within %dms", () -> androidBtGatt.readRemoteRssi())
