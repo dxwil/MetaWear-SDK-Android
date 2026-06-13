@@ -77,6 +77,16 @@ afterEvaluate {
         }
         repositories {
             mavenLocal()   // ~/.m2/repository
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/dxwil/MetaWear-SDK-Android")
+                credentials {
+                    def props = new Properties()
+                    props.load(new FileInputStream(project.rootProject.file("local.properties")))
+                    username = props.getProperty("GITHUB_USERNAME")
+                    password = props.getProperty("GITHUB_TOKEN")
+                }
+            }
         }
     }
 }
