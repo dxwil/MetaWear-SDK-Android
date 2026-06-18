@@ -339,7 +339,7 @@ class LoggingImpl extends ModuleImplBase implements Logging {
             }
         });
 
-        if (mwPrivate.lookupModuleInfo(LOGGING).revision == REVISION_EXTENDED_LOGGING) {
+        if (mwPrivate.lookupModuleInfo(LOGGING).revision >= REVISION_EXTENDED_LOGGING) {
             this.mwPrivate.addResponseHandler(new Pair<>(LOGGING.id, READOUT_PAGE_COMPLETED), response -> mwPrivate.sendCommand(new byte[] {LOGGING.id, READOUT_PAGE_CONFIRM}));
         }
     }
@@ -366,7 +366,7 @@ class LoggingImpl extends ModuleImplBase implements Logging {
         this.updateHandler= updateHandler;
         this.errorHandler= errorHandler;
 
-        if (mwPrivate.lookupModuleInfo(LOGGING).revision == REVISION_EXTENDED_LOGGING) {
+        if (mwPrivate.lookupModuleInfo(LOGGING).revision >= REVISION_EXTENDED_LOGGING) {
             mwPrivate.sendCommand(new byte[] {LOGGING.id, READOUT_PAGE_COMPLETED, 1});
         }
         mwPrivate.sendCommand(new byte[] {LOGGING.id, READOUT_NOTIFY, 1});
@@ -395,7 +395,7 @@ class LoggingImpl extends ModuleImplBase implements Logging {
 
     @Override
     public void clearEntries() {
-        if (mwPrivate.lookupModuleInfo(LOGGING).revision == REVISION_EXTENDED_LOGGING) {
+        if (mwPrivate.lookupModuleInfo(LOGGING).revision >= REVISION_EXTENDED_LOGGING) {
             mwPrivate.sendCommand(new byte[] {LOGGING.id, READOUT_PAGE_COMPLETED, (byte) 1});
         }
         mwPrivate.sendCommand(new byte[] {LOGGING.id, REMOVE_ENTRIES, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff});
